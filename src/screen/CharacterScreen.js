@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
-import { FlatList, Text, View } from 'react-native';
+import React from 'react';
 import { gql, useQuery } from '@apollo/client';
-import client from './../api/apollo-client';
+import { ScrollView } from 'react-native-gesture-handler';
+import { View, Text, ImageBackground, StyleSheet } from 'react-native'
 
 const getCharacter = gql`
   {
@@ -25,18 +25,43 @@ function Character({ Component, pageProps }) {
   console.log(data);
 
   return (
-    <div>
+    <View style= {styles.viewStyle}>
+    <ImageBackground source={"./../image/rm.jpg"} style={styles.backgroundimageStyle}>
+    <ScrollView>
       {data.characters.results.map((character) => (
-        <div key={character.id}>
+        <View key={character.id}>
+        
           <h3>{character.id}</h3>
           <p>
             {character.name} - {character.gender} - {character.image}
           </p>
           <h3>{character.status}</h3>
-        </div>
+          
+        </View>
       ))}
-    </div>
+      </ScrollView>
+      </ImageBackground>
+    </View>
   );
 }
+
+const styles = StyleSheet.create({
+  textStyle: {
+    fontSize: 30,
+    color: "blue",
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  viewStyle: {
+    flex: 1,
+    backgroundColor: "yellow"
+  },
+  backgroundimageStyle: {
+    flex:1,
+    resizeMode: "cover",
+    justifyContent: "center"
+},
+
+});
 
 export default Character;

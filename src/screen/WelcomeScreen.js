@@ -1,22 +1,46 @@
 import React from 'react'
-import { View, Text } from 'react-native'
+import { View, Text, StyleSheet } from 'react-native'
 import { Button } from 'react-native-elements/dist/buttons/Button'
-import { Card } from 'react-native-elements/dist/card/Card'
+import { FontAwesome5 } from '@expo/vector-icons';
 
 function Welcome(props) {
     return (
-        <Card>
-        <Text>
+        <View style={styles.viewStyle}>
+        <Text style={styles.textStyle} >
         Welcome
         </Text>
         <Button
-        title="Click here to get surprised"
-                    onPress={function (){props.navigation.navigate("Base");}}
-                    color="green"
-        />
-        
-        </Card>
+        title="Click here"
+        type="solid"
+        icon={<FontAwesome5 name="user-edit" size={24} color="white" />}
+        onPress= {
+            function(){
+                props.navigation.navigate('Rick & Morty');
+            }}
+            />
+            </View>
     )
 }
+
+
+
+const styles = StyleSheet.create({
+    textStyle: {
+      fontSize: 20,
+      color: "blue",
+      alignItems: 'center',
+      justifyContent: 'center',
+      textAlign: 'center'
+    },
+    viewStyle: {
+      flex: 1,
+      backgroundColor: "orange"
+    },
+    imageStyle: {
+      flex:1,
+      resizeMode: "cover",
+      justifyContent: "center"
+  },
+  });
 
 export default Welcome
